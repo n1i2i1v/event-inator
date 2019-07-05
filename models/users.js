@@ -86,20 +86,12 @@ async function createUser(body) {
   }
 }
 
-async function changeEmail(user, email){
+async function changeInfo(user, filter, value){
   let user = await User.findUserByID();
   if (user === null || user.length === 0) {
     throw new UserNotFound();
   }
-  user.updateEmail(email);
-}
-
-async function changeUsername(user, username){
-  let user = await User.findUserByID();
-  if (user === null || user.length === 0) {
-    throw new UserNotFound();
-  }
-  user.updateUsername(username);
+  user.updateInfo(filter, value);
 }
 
 async function changePassword(filter, user, password){
@@ -114,7 +106,6 @@ module.exports = {
   login,
   getUser,
   createUser,
-  changeEmail,
-  changeUsername,
+  changeInfo,
   changePassword
 }
