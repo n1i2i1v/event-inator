@@ -71,6 +71,7 @@ const UserSchema = new mongoose.Schema({
   }],
   failedLoginCount: Number,
   locked: Number,
+  varify: Number,
   tickets: [{
     type: 'ObjectId',
     ref: Ticket
@@ -82,7 +83,7 @@ UserSchema.pre('save', function(next) {
   next();
 });
 
-UserSchema.statics.getUserByID = function(id) {
+UserSchema.statics.findUserByID = function(id) {
  return User.findOne({
     id
   }, {
@@ -108,7 +109,7 @@ UserSchema.methods.lockUser = function() {
   });
 }
 
-UserSchema.methods.unlockUser = function() {
+UserSchema.methods.unLockUser = function() {
   User.update({
     _id: this._id
   }, {
@@ -122,7 +123,7 @@ UserSchema.methods.failed = function() {
   User.update({
     _id: this._id
   }, {
-    failedLoginCount: user.failedLoginCount + 1
+    failedLoginCount: this.failedLoginCount + 1
   }, function(err, affected, resp) {
     console.log(affected);
   });
@@ -138,56 +139,35 @@ UserSchema.methods.deleteLoginCount = function() {
   });
 }
 
-UserSchema.methods.updateEmail = function(email) {
+UserSchema.methods.varified = function() {
   User.update({
     _id: this._id
   }, {
-    email: email
+    varify: 1
   }, function(err, affected, resp) {
     console.log(affected);
   });
 }
 
-UserSchema.methods.updateUsername = function(username) {
+UserSchema.methods.unVarified = function() {
   User.update({
     _id: this._id
   }, {
-    username: username
+    varify: 0
   }, function(err, affected, resp) {
     console.log(affected);
   });
 }
 
-UserSchema.methods.updatePassword = function(password) {
+UserSchema.methods.updateInfo = function(filter, value) {
   User.update({
     _id: this._id
   }, {
-    password: pbkdf2.pbkdf2Sync(password, 'salt', 1, 32, 'sha512').toString('hex')
+    filter: value
   }, function(err, affected, resp) {
     console.log(affected);
   });
 }
-
-
-
-// UserSchema.methods.getAllPostsOfTheUser = function(email) {
-//   return User.findOne({
-//     email: this.email
-//   }).populate('posts');
-// }
-
-
-
-
-// UserSchema.methods.updateForDeleteCreate = function(posts) {
-//   User.update({
-//     email: this.email
-//   }, {
-//     posts: posts
-//   }, function(err, affected, resp) {
-//     console.log(affected);
-//   });
-// }
 
 const User = mongoose.model('User', UserSchema);
 

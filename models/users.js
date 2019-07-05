@@ -13,9 +13,9 @@ const {
 const maximum_allowed_wrong_passwords = process.env.maximum_allowed_wrong_passwords || 3;
 
 
-async function login(filter, password) {
+async function login(filter, value, password) {
 
-  const user = await User.ﬁndUserForLogin(filter);
+  const user = await User.ﬁndUserForLogin(filter, value);
 
   if (user === null || user.length === 0) {
     throw new UserNotFound();
@@ -46,16 +46,12 @@ async function login(filter, password) {
 }
 
 
-// async function getUser(email) {
-//   const user = await User.getUserByEmail(email);
-//   if (!user) {
-//     throw new UserNotFound();
-//   }
-//   return user;
-// }
-
-async function getAllUsers() {
-  return await User.getUsers({});
+async function getUser(filter, value) {
+  const user = await User.ﬁndUserForLogin(filter, value);
+  if (!user) {
+    throw new UserNotFound();
+  }
+  return user;
 }
 
 async function createUser(body) {
@@ -106,8 +102,8 @@ async function changeUsername(user, username){
   user.updateUsername(username);
 }
 
-async function changeUsername(user, password){
-  let user = await User.findUserForLogin();
+async function changePassword(filter, user, password){
+  let user = await User.findUserForLogin(filter, user);
   if (user === null || user.length === 0) {
     throw new UserNotFound();
   }
@@ -117,6 +113,8 @@ async function changeUsername(user, password){
 module.exports = {
   login,
   getUser,
-  getAllUsers,
-  createUser
+  createUser,
+  changeEmail,
+  changeUsername,
+  changePassword
 }
