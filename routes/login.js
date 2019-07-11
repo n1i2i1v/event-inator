@@ -6,7 +6,11 @@ const {
   login
 } = require(`${path}/models/users.js`);
 
-router.get('/', async function(req, res, next) {
+const {
+  companyLogin
+} = require(`${path}/models/companies.js`);
+
+router.get('/loginUser', async function(req, res, next) {
     try {
       const user = await login(req.query.username, req.query.password);
       res.json(user);

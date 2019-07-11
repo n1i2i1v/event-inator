@@ -21,7 +21,7 @@ app.set('socketio', socketio);
 
 app.use('/users', require('./routes/users.js'));
 app.use('/login', require('./routes/login.js'));
-
+app.use('/companies', require('./routes/companies.js'));
 
 
 app.use(express.static('public'));
@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 })
 
 app.use(function(err, req, res, next) {
-  
+
 })
 
 socketio.on('connect', function() {
@@ -51,4 +51,3 @@ socketio.on('connect', function() {
 http.listen(3000, function() {
   console.log('server is up and running...');
 })
-

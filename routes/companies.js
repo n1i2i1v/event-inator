@@ -4,14 +4,12 @@ const router = express.Router();
 const path = process.cwd();
 
 const {
-  getUser,
-  getAllUsers,
-  createUser
-} = require(`${path}/models/users.js`);
+  createCompany
+} = require(`${path}/models/companies.js`);
 
 router.post('/', async function(req, res, next) {
   try {
-    await createUser(req.body);
+    await createCompany(req.body);
     const socketio = req.app.get('socketio');
     socketio.emit('user-saved', req.body);
     res.status(200).end();
