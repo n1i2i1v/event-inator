@@ -6,6 +6,7 @@ const CompanySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
     trim: true
   },
   email: {
@@ -25,6 +26,7 @@ const CompanySchema = new mongoose.Schema({
         validator: function(v) {
             return v.length >= 9;
         },
+      }
   }],
   failedLoginCount: Number,
   locked: Number,
@@ -96,8 +98,8 @@ CompanySchema.methods.deleteLoginCount = function() {
   });
 }
 
-ComapanySchema.methods.varified = function() {
-  Comapny.update({
+CompanySchema.methods.varified = function() {
+  Company.update({
     _id: this._id
   }, {
     varify: 1
@@ -106,8 +108,8 @@ ComapanySchema.methods.varified = function() {
   });
 }
 
-ComapanySchema.methods.unVarified = function() {
-  Comapany.update({
+CompanySchema.methods.unVarified = function() {
+  Company.update({
     _id: this._id
   }, {
     varify: 0
@@ -116,8 +118,8 @@ ComapanySchema.methods.unVarified = function() {
   });
 }
 
-ComapanySchema.methods.updateInfo = function(filter, value) {
-  Comapany.update({
+CompanySchema.methods.updateInfo = function(filter, value) {
+  Company.update({
     _id: this._id
   }, {
     filter: value
@@ -126,8 +128,8 @@ ComapanySchema.methods.updateInfo = function(filter, value) {
   });
 }
 
-ComapanySchema.methods.updatePassword = function(password) {
-  Comapany.update({
+CompanySchema.methods.updatePassword = function(password) {
+  Company.update({
     _id: this._id
   }, {
     password: pbkdf2.pbkdf2Sync(password, 'salt', 1, 32, 'sha512').toString('hex')

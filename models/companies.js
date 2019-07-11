@@ -1,5 +1,5 @@
 const path = process.cwd();
-const User = require(`${path}/schemas/companies.js`);
+const Company = require(`${path}/schemas/companies.js`);
 
 const {
   UserNotFound,
@@ -13,9 +13,9 @@ const {
 const maximum_allowed_wrong_passwords = process.env.maximum_allowed_wrong_passwords || 3;
 
 
-async function login(filter, value, password) {
+async function companyLogin(filter, value, password) {
 
-  const company = await Comapany.ﬁndCompanyForLogin(filter, value);
+  const company = await Company.ﬁndCompanyForLogin(filter, value);
 
   if (company === null || company.length === 0) {
     throw new UserNotFound();
@@ -56,23 +56,15 @@ async function getCompany(filter, value) {
 
 async function createCompany(body) {
   try {
-      const company = await new Comapany({
-        firstName: body.firstName,
-        lastName: body.lastName,
+      const company = await new Company({
+        name: body.name,
         email: body.email,
-        country: body.country,
-        city: body.city,
-        zip_code: body.zip_code,
-        street: body.street,
-        apt_building: body.apt_building,
-        region: body.region,
         password: body.password,
-        username: body.username,
         phone: [],
         failedLoginCount: 0,
         locked: 0,
         varify: 1,
-        tickets: []
+        events: []
     });
     await company.save();
   } catch (err) {
@@ -104,9 +96,9 @@ async function changePassword(filter, company, password){
 }
 
 module.exports = {
-  login,
-  getcompany,
-  createcompany,
+  companyLogin,
+  getCompany,
+  createCompany,
   changeInfo,
   changePassword
 }
