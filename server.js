@@ -5,9 +5,7 @@ const PATH = process.cwd();
 
 const app = express();
 
-const http = require('http').Server(app);
-const socketio = require('socket.io')(http);
-app.set('socketio', socketio);
+
 
  app.use(express.json());
  app.use(express.urlencoded({extended: true}));
@@ -44,9 +42,6 @@ app.use(function(err, req, res, next) {
 
 })
 
-socketio.on('connect', function() {
-  //console.log('someone is connected');
-})
 
 http.listen(3000, function() {
   console.log('server is up and running...');

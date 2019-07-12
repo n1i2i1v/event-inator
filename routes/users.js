@@ -12,8 +12,6 @@ const {
 router.post('/', async function(req, res, next) {
   try {
     await createUser(req.body);
-    const socketio = req.app.get('socketio');
-    socketio.emit('user-saved', req.body);
     res.status(200).end();
   } catch (err) {
     next(err);
