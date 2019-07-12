@@ -66,6 +66,10 @@ async function createCompany(body) {
         varify: 1,
         events: []
     });
+    if(body.phone1)
+      user.phone.push(body.phone1);
+    if(body.phone2)
+      user.phone.push(body.phone2);
     await company.save();
   } catch (err) {
     if (err.message.includes('invalid')) {
@@ -78,8 +82,8 @@ async function createCompany(body) {
   }
 }
 
-async function changeInfo(company, filter, value){
-  let company = await Company.findComapanyByID();
+async function changeInfo(id, filter, value){
+  let company = await Company.findComapanyByID(id);
   if (company === null || company.length === 0) {
     throw new UserNotFound();
   }
@@ -87,18 +91,33 @@ async function changeInfo(company, filter, value){
 }
 
 
-async function changePassword(filter, company, password){
-  let company = await Company.findCompanyForLogin(filter, company);
+async function changePassword(filter, value, password){
+  let company = await Company.findCompanyForLogin(filter, value);
   if (company === null || company.length === 0) {
     throw new UserNotFound();
   }
   company.updatePassword(password);
 }
 
+async function changePhone(companyId, phoneIndex, phoneNumber){
+try{
+  let company = await Company.findComapanyByID(companyId);
+  if (company === null || company.length === 0) {
+    throw new UserNotFound();
+  }
+  comapany.updatePhone(phoneIndex, phoneNumber);
+  }
+  catch(err){
+    throw new ValidationError();
+  }
+}
+
+
 module.exports = {
   companyLogin,
   getCompany,
   createCompany,
   changeInfo,
-  changePassword
+  changePassword,
+  changePhone
 }

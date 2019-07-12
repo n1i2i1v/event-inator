@@ -95,6 +95,18 @@ UserSchema.methods.comparePassword = function(password) {
   return this.password === pbkdf2.pbkdf2Sync(password, 'salt', 1, 32, 'sha512').toString('hex');
 }
 
+UserSchema.methods.UpdatePhone = function(oldPhoneIndex, newphoneNumber) {
+  this.phone[oldPhoneIndex-1] = phoneNumber;
+  User.update({
+    _id: this._id
+  }, {
+    phone: this.phone
+  }, function(err, affected, resp) {
+    console.log(affected);
+  });
+}
+
+
 UserSchema.statics.ﬁndUserForLogin = function(filter, value) {
   return User.findOne({filter: value});
 }

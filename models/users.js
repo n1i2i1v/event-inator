@@ -74,9 +74,13 @@ async function createUser(body) {
         varify: 1,
         tickets: []
     });
+    if(body.phone1)
+      user.phone.push(body.phone1);
+    if(body.phone2)
+      user.phone.push(body.phone2);
     await user.save();
   } catch (err) {
-    if (err.message.includes('invalid')) {
+    if (err.message.includes('invalid ')) {
       throw new ValidationError();
     } else if (err.message.includes('duplicate key')) {
       throw new UserAlreadyExists();
@@ -102,10 +106,23 @@ async function changePassword(filter, user, password){
   user.updatePassword(password);
 }
 
+async function changePhone(UserId, phoneIndex, phoneNumber){
+try{
+  let user = await User.findUserByID(UserId);
+  if (user === null || user.length === 0) {
+    throw new UserNotFound();
+  }
+  user.updatePhone(phoneIndex, phoneNumber);
+  }
+  catch(err){
+    throw new ValidationError();
+  }
+}
 module.exports = {
   login,
   getUser,
   createUser,
   changeInfo,
-  changePassword
+  changePassword,
+  changePhone
 }

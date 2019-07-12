@@ -138,6 +138,17 @@ CompanySchema.methods.updatePassword = function(password) {
   });
 }
 
+CompanySchema.methods.UpdatePhone = function(oldPhoneIndex, newphoneNumber) {
+  this.phone[oldPhoneIndex-1] = phoneNumber;
+  Company.update({
+    _id: this._id
+  }, {
+    phone: this.phone
+  }, function(err, affected, resp) {
+    console.log(affected);
+  });
+}
+
 const Company = mongoose.model('Company', CompanySchema);
 
 

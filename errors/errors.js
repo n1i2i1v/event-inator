@@ -15,7 +15,7 @@ class PasswordIncorrect extends Error {
 }
 class ValidationError extends Error {
     constructor() {
-      super('Username is shorter than 4 characters!');
+      super('Invalid input!');
     }
 }
 class UserIsLocked extends Error {
