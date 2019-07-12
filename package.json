@@ -1,7 +1,6 @@
 {
   "name": "event-inator",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -12,7 +11,7 @@
     "deploy": "gh-pages -d build"
   },
   "keywords": [],
-  "author": "",
+  "author": "NitroV",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.2.0",
@@ -43,5 +42,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n1i2i1v/event-inator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/n1i2i1v/event-inator/issues"
+  },
+  "homepage": "https://github.com/n1i2i1v/event-inator#readme",
+  "description": ""
 }
