@@ -9,16 +9,9 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Router basename="/">
       <div className ="Init">
-          <div className ="Hovers">
-          <NavLink to="/login/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login Page</NavLink>
-          <NavLink exact to="/user/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">User Page</NavLink>
-          </div>
-      <Route exact path="/login/" component={Login}></Route>
-      <Route exact path="/user/" component={User}></Route>
+        <User />
       </div>
-      </Router>
     );
   }
 }
