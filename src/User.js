@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import './User.css';
+import Header from './pages/Header';
+import Footer from './pages/Footer';
 
 class User extends Component {
   render() {
     return (
       <Router basename="/user/">
         <div className="User">
-        <h1>User centerpage, need ideas :) </h1>
+        <Header />
+        <Footer />
         </div>
       </Router>
     );

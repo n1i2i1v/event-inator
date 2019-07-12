@@ -1,0 +1,12 @@
+.Footer_root{
+  display: flex;
+  flex-direction: column;
+  min-height: 65vh;
+}
+.Footer{
+  padding: 20px 10px;
+  margin-top: auto;
+  background-color: #666CDA;
+  text-align: center;
+  color: white;
+}
