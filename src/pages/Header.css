@@ -4,4 +4,6 @@
   background-color: #666CDA8A;
   background-blend-mode: overlay;
   background-position: center;
+  padding: 15vh;
+  position: relative;
 }

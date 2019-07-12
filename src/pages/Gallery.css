@@ -1,0 +1,14 @@
+.Gallery{
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.GalleryE{
+  display: flex;
+}
+.GalleryE .MuiPaper-root{
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+}

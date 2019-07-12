@@ -43,7 +43,7 @@ const StyledMenuItem = withStyles(theme => ({
       margin: '-8px 10px 18px 10px',
       background: 'white',
       padding: '11px 20px',
-      borderRadius: 20,
+      borderRadius: '10px 30px',
       textAlign: 'center',
       color: '#666cda',
       border: '1px white solid',
@@ -69,7 +69,7 @@ export default function LongMenu() {
 const StyledButton = withStyles({
     root: {
       background: 'white',
-      borderRadius: 15,
+      borderRadius: '10px 30px',
       border: 0,
       margin: 0,
       right: 16,
@@ -78,7 +78,7 @@ const StyledButton = withStyles({
       position: 'fixed',
       color: '#666cda',
       padding: '15px',
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      boxShadow: '0 3px 5px 2px rgba(9, 0, 2, 0.55)',
       "&:hover, &:focus, &:active": {
         color:'white',
         background:'#666cda',

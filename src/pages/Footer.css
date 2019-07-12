@@ -1,7 +1,7 @@
 .Footer_root{
   display: flex;
   flex-direction: column;
-  min-height: 65vh;
+  min-height: 10vh;
 }
 .Footer{
   padding: 20px 10px;
