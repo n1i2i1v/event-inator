@@ -108,7 +108,9 @@ UserSchema.methods.UpdatePhone = function(oldPhoneIndex, newphoneNumber) {
 
 
 UserSchema.statics.ﬁndUserForLogin = function(filter, value) {
-  return User.findOne({filter: value});
+  let obj = {};
+  obj[filter] = value;
+  return User.findOne(obj);
 }
 
 UserSchema.methods.lockUser = function() {

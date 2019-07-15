@@ -55,7 +55,9 @@ CompanySchema.methods.comparePassword = function(password) {
 }
 
 CompanySchema.statics.ﬁndCompanyForLogin = function(filter, value) {
-  return Company.findOne({filter: value});
+  let obj = {};
+  obj[filter] = value;
+  return Company.findOne(obj);
 }
 
 CompanySchema.methods.lockCompany = function() {
