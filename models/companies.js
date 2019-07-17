@@ -72,7 +72,7 @@ async function createCompany(body) {
       user.phone.push(body.phone2);
     await company.save();
   } catch (err) {
-    if (err.message.includes('invalid')) {
+    if (err.message.includes('validation')) {
       throw new ValidationError();
     } else if (err.message.includes('duplicate key')) {
       throw new UserAlreadyExists();

@@ -60,9 +60,9 @@ const UserSchema = new mongoose.Schema({
   },
   phone: [{
     type: String,
-    enum: {
-        values: ['Mobile', 'Home', 'Office']
-    },
+    // enum: {
+    //     values: ['Mobile', 'Home', 'Office']
+    // },
     validate: {
         validator: function(v) {
             return v.length >= 9;
