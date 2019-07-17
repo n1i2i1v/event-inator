@@ -183,6 +183,32 @@ UserSchema.methods.updateInfo = function(filter, value) {
   });
 }
 
+UserSchema.methods.updateInfo = function(filter, value) {
+  User.update({
+    _id: this._id
+  }, {
+    filter: value
+  }, function(err, affected, resp) {
+    console.log(affected);
+  });
+}
+
+UserSchema.methods.getAllTicketsOfTheUser = function(email) {
+  return User.findOne({
+    _id: this._id
+  }).populate('ticket');
+}
+
+UserSchema.methods.addTicket = function(ticket) {
+  let ticketsOfTheUser = this.tickets.push(ticket);
+  User.update({
+    _id: this._id
+  }, {
+    tickets: ticketsOfTheUser
+  }, function(err, affected, resp) {
+    console.log(affected);
+  });
+}
 const User = mongoose.model('User', UserSchema);
 
 

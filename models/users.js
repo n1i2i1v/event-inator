@@ -1,5 +1,6 @@
 const path = process.cwd();
 const User = require(`${path}/schemas/users.js`);
+const Ticket = require(`${path}/schemas/tickets.js`);
 
 const {
   UserNotFound,
@@ -121,11 +122,26 @@ try{
     throw new ValidationError();
   }
 }
+
+async function createTicket(userId){
+try{
+  let user = await User.findUserByID(userId);
+  if (user === null || user.length === 0) {
+    throw new UserNotFound();
+  }
+  user.addTicket(phoneIndex, phoneNumber);
+  }
+  catch(err){
+    throw new ValidationError();
+  }
+}
+
 module.exports = {
   login,
   getUser,
   createUser,
   changeInfo,
   changePassword,
-  changePhone
+  changePhone,
+  createTicket
 }
