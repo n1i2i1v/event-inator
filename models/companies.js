@@ -18,10 +18,7 @@ async function companyLogin(value, password) {
   let company = await Company.ﬁndCompanyForLogin("username", value);
 
   if (company === null || company.length === 0) {
-    company = await Company.ﬁndCompanyForLogin("email", value);
-      if (company === null || company.length === 0){
         throw new UserNotFound();
-      }
   }
   const result = await company.comparePassword(password);
 
