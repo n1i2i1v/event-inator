@@ -13,12 +13,15 @@ const {
 const maximum_allowed_wrong_passwords = process.env.maximum_allowed_wrong_passwords || 3;
 
 
-async function login(filter, value, password) {
+async function login(value, password) {
 
-  const user = await User.ﬁndUserForLogin(filter, value);
+  let user = await User.ﬁndUserForLogin("username", value);
 
   if (user === null || user.length === 0) {
-    throw new UserNotFound();
+    user = await User.ﬁndUserForLogin("email", value);
+    if (user === null || user.length === 0) {
+      throw new UserNotFound();
+    }
   }
   const result = await user.comparePassword(password);
 
