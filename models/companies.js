@@ -67,9 +67,9 @@ async function createCompany(body) {
         events: []
     });
     if(body.phone1)
-      user.phone.push(body.phone1);
+      company.phone.push(body.phone1);
     if(body.phone2)
-      user.phone.push(body.phone2);
+      company.phone.push(body.phone2);
     await company.save();
   } catch (err) {
     if (err.message.includes('validation')) {
