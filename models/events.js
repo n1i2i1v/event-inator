@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const path = process.cwd();
 const Event = require(`${path}/schemas/events.js`);
 
@@ -7,7 +8,8 @@ const {
   PasswordIncorrect,
   ValidationError,
   UserIsLocked,
-  FieldIsRequired
+  FieldIsRequired,
+  EventNotFound
 } = require(`${path}/errors/errors.js`);
 
 async function createEvent(body) {
@@ -29,4 +31,10 @@ async function createEvent(body) {
     if (err.message.includes('is required.'))
       throw new FieldIsRequired();
   }
+}
+async function getTicketsOfEvent(eventId){
+  const event = Event.findEventByID(eventId);
+  if(event === null || event.length === 0)
+    throw new EventNotFound();
+  return event.getAllTicketsOfTheEvent();
 }

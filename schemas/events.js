@@ -46,6 +46,30 @@ const EventSchema = new mongoose.Schema({
   }]
 });
 
+EventSchema.statics.findEventByID = function(eventId) {
+  return Event.findOne({
+     eventId
+   }, {});
+}
+
+EventSchema.methods.getAllTicketsOfTheEvent = function() {
+  return Event.findOne({
+      _id: this._id
+    }).populate('ticket');
+}
+
+EventSchema.methods.addTicket = function(ticket) {
+  let ticketsOfTheEvent = this.tickets.push(ticket);
+  Event.update({
+    _id: this._id
+  }, {
+    tickets: ticketsOfTheEvent
+  }, function(err, affected, resp) {
+    console.log(affected);
+  });
+}
+
+
 const Event = mongoose.model('Event', EventSchema);
 
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const pbkdf2 = require('pbkdf2');
-const Ticket = require('./tickets.js');
+// const Ticket = require('./tickets.js');
 
 const UserSchema = new mongoose.Schema({
   firstName: {
@@ -72,10 +72,10 @@ const UserSchema = new mongoose.Schema({
   failedLoginCount: Number,
   locked: Number,
   varify: Number,
-  tickets: [{
-    type: 'ObjectId',
-    ref: Ticket
-  }]
+  // tickets: [{
+  //   type: 'ObjectId',
+  //   ref: Ticket
+  // }]
 });
 
 UserSchema.pre('save', function(next) {
@@ -193,22 +193,22 @@ UserSchema.methods.updateInfo = function(filter, value) {
   });
 }
 
-UserSchema.methods.getAllTicketsOfTheUser = function(email) {
-  return User.findOne({
-    _id: this._id
-  }).populate('ticket');
-}
+// UserSchema.methods.getAllTicketsOfTheUser = function(email) {
+//   return User.findOne({
+//     _id: this._id
+//   }).populate('ticket');
+// }
 
-UserSchema.methods.addTicket = function(ticket) {
-  let ticketsOfTheUser = this.tickets.push(ticket);
-  User.update({
-    _id: this._id
-  }, {
-    tickets: ticketsOfTheUser
-  }, function(err, affected, resp) {
-    console.log(affected);
-  });
-}
+// UserSchema.methods.addTicket = function(ticket) {
+//   let ticketsOfTheUser = this.tickets.push(ticket);
+//   User.update({
+//     _id: this._id
+//   }, {
+//     tickets: ticketsOfTheUser
+//   }, function(err, affected, resp) {
+//     console.log(affected);
+//   });
+// }
 const User = mongoose.model('User', UserSchema);
 
 

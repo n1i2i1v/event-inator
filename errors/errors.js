@@ -3,6 +3,13 @@ class UserNotFound extends Error {
       super('User is not found!');
     }
 }
+
+class EventNotFound extends Error {
+    constructor() {
+      super('Event is not found!');
+    }
+}
+
 class UserAlreadyExists extends Error {
     constructor() {
       super('User already exists!');
@@ -35,5 +42,6 @@ class FieldIsRequired extends Error {
     PasswordIncorrect,
     ValidationError,
     UserIsLocked,
-    FieldIsRequired
+    FieldIsRequired,
+    EventNotFound
   }
