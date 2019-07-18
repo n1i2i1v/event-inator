@@ -75,8 +75,7 @@ async function createUser(body) {
         phone: [],
         failedLoginCount: 0,
         locked: 0,
-        varify: 1,
-        tickets: []
+        varify: 1
     });
     if(body.phone1)
       user.phone.push(body.phone1);
