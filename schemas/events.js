@@ -55,7 +55,7 @@ EventSchema.statics.findEventByID = function(eventId) {
 EventSchema.methods.getAllTicketsOfTheEvent = function() {
   return Event.findOne({
       _id: this._id
-    }).populate('ticket');
+    }).populate('tickets');
 }
 
 EventSchema.methods.addTicket = function(ticket) {
