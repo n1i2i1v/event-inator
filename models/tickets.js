@@ -11,7 +11,8 @@ const {
 } = require(`${path}/errors/errors.js`);
 
 async function createTicket(body) {
-      const ticket = await new Ticket({});
+      const ticket = await new Ticket({body.cost
+      });
       await ticket.save();
   }
 }
