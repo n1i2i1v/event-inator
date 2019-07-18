@@ -15,10 +15,10 @@ const maximum_allowed_wrong_passwords = process.env.maximum_allowed_wrong_passwo
 
 async function companyLogin(value, password) {
 
-  let company = await Company.ﬁndCompanyForLogin("username", value);
-
+  const company = await Company.ﬁndCompanyForLogin(value);
+  console.log(company);
   if (company === null || company.length === 0) {
-        throw new UserNotFound();
+    throw new UserNotFound();
   }
   const result = await company.comparePassword(password);
 
@@ -66,6 +66,7 @@ async function createCompany(body) {
         varify: 1,
         events: []
     });
+    console.log(body.phone2);
     if(body.phone1)
       company.phone.push(body.phone1);
     if(body.phone2)

@@ -54,10 +54,8 @@ CompanySchema.methods.comparePassword = function(password) {
   return this.password === pbkdf2.pbkdf2Sync(password, 'salt', 1, 32, 'sha512').toString('hex');
 }
 
-CompanySchema.statics.ﬁndCompanyForLogin = function(filter, value) {
-  let obj = {};
-  obj[filter] = value;
-  return Company.findOne(obj);
+CompanySchema.statics.ﬁndCompanyForLogin = function(value) {
+  return Company.findOne({email: value});
 }
 
 CompanySchema.methods.lockCompany = function() {
