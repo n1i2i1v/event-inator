@@ -21,8 +21,8 @@ const {
 //   }
 // }
 
-async function createTicketForEvent(event, ticketCost) {
-  const event = Event.findEventByID(userId);
+async function createTicketForEvent(eventId, ticketCost) {
+  const event = Event.findEventByID(eventId);
   if(event === null || event.length === 0)
     throw new EventNotFound();
   const ticket = await new Ticket({
@@ -34,18 +34,22 @@ async function createTicketForEvent(event, ticketCost) {
   }
 
 
-async function createTicketForUserAndEvent(userId) {
-      // const user = User.findUserByID(userId);
-      // if(company === null || company.length === 0)
-      //   throw new UserNotFound();
-      const event = Event.findEventByID(userId);
-      if(event === null || event.length === 0)
-          throw new EventNotFound();
-      const ticket = await new Ticket({
-        body.cost
-      });
+// async function createTicketForUserAndEvent(userId) {
+//       // const user = User.findUserByID(userId);
+//       // if(company === null || company.length === 0)
+//       //   throw new UserNotFound();
+//       const event = Event.findEventByID(userId);
+//       if(event === null || event.length === 0)
+//           throw new EventNotFound();
+//       const ticket = await new Ticket({
+//         body.cost
+//       });
+//
+//       await ticket.save();
+//       //user.addTicket(ticket._id);
+//       event.addTicket(ticket._id);
+//   }
 
-      await ticket.save();
-      //user.addTicket(ticket._id);
-      event.addTicket(ticket._id);
+  module.exports = {
+    createTicketForEvent
   }

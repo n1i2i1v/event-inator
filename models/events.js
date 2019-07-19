@@ -38,3 +38,8 @@ async function getTicketsOfEvent(eventId){
     throw new EventNotFound();
   return event.getAllTicketsOfTheEvent();
 }
+
+module.exports = {
+  getTicketsOfEvent,
+  createEvent
+}

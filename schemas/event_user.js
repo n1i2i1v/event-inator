@@ -1,14 +1,19 @@
 const mongoose = require('mongoose');
-const User = require('./users.js');
-const Event = require('./events.js');
+const path = process.cwd();
+const Event = require(`${path}/schemas/events.js`);
+const User = require(`${path}/schemas/users.js`);
 
-const UserSchema = new mongoose.Schema({
-  events: [{
+const EventUserSchema = new mongoose.Schema({
+  events: {
     type: 'ObjectId',
-    ref: Event
-  }],
-  users: [{
+    ref: Ticket
+  },
+  users: {
     type: 'ObjectId',
     ref: User
-  }]
-})
+  }
+});
+
+const EventUser = mongoose.model('EventUser', EventUserSchema);
+
+module.exports = EventUserSchema;
