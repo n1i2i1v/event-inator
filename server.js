@@ -24,14 +24,15 @@ app.use('/companies', require('./routes/companies.js'));
 
 app.use(express.static('public'));
 
-app.get('/login.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '/login.html'))
-})
+// app.get('/login.html', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/login.html'))
+// })
 
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname +'public' + '/index.html'));
 })
+
 
 
 app.use(function(req, res, next) {
@@ -43,6 +44,6 @@ app.use(function(err, req, res, next) {
 })
 
 
-http.listen(3000, function() {
+app.listen(3000, function() {
   console.log('server is up and running...');
 })

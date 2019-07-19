@@ -7,6 +7,8 @@ const {
   createCompany
 } = require(`${path}/models/companies.js`);
 
+
+
 router.post('/', async function(req, res, next) {
   try {
     await createCompany(req.body);
@@ -15,6 +17,9 @@ router.post('/', async function(req, res, next) {
     next(err);
   }
 })
+
+
+  module.exports = router;
 
 // router.get('/UserByUsername', async function(req, res, next) {
 //     try {
@@ -30,4 +35,4 @@ router.post('/', async function(req, res, next) {
 
 
 
-  module.exports = router;
+

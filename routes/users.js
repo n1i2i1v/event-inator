@@ -4,8 +4,7 @@ const router = express.Router();
 const path = process.cwd();
 
 const {
-  getUser,
-  getAllUsers,
+  login,
   createUser
 } = require(`${path}/models/users.js`);
 
